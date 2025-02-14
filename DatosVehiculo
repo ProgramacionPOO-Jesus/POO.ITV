@@ -1,0 +1,33 @@
+public class DatosVehiculo {
+   
+        private long entrada; 
+        private long salida;  
+        
+       
+        public DatosVehiculo() {
+            this.entrada = Reloj.ahora(); 
+            this.salida = 0; 
+        }
+    
+       
+        public void atiende() {
+            if (this.salida == 0) {
+                this.salida = Reloj.ahora(); 
+            }
+            long tiempoEspera = this.salida - this.entrada;
+            System.out.println("Tiempo de espera: " + tiempoEspera + " milisegundos");
+        }
+        
+        public double getTiempoEspera() {
+            if (this.salida == 0) {
+                throw new IllegalStateException("No se ha registrado la salida aún.");
+            }
+            long tiempoEspera = this.salida - this.entrada;
+            return tiempoEspera / 1000.0; 
+        }
+    
+        @Override
+        public String toString() {
+            return "Hora de entrada: " + this.entrada + ", Hora de salida: " + this.salida;
+        }
+}
